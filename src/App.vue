@@ -1,6 +1,12 @@
 <template>
   <div id="app">
-    <MainFrame/>
+    <MainFrame @flip="flip"/>
+    <!--<div class="musicBtn">-->
+    <!--<img @click="pause" v-show="music" src="./assets/on.png">-->
+    <!--<img @click="play" v-show="!music" src="./assets/off.png">-->
+    <!--</div>-->
+    <video ref="bg" src="./assets/mp3/bg.mp4" autoplay loop></video>
+    <audio ref="flip" src="./assets/mp3/flip.mp3"></audio>
   </div>
 </template>
 
@@ -9,11 +15,29 @@
 
   export default {
     name: 'App',
-    components: {MainFrame}
+    components: {MainFrame},
+    data () {
+      return {
+        music: true
+      }
+    },
+    methods: {
+      play () {
+        this.music = true
+        this.$refs.bg.play()
+      },
+      pause () {
+        this.music = false
+        this.$refs.bg.pause()
+      },
+      flip () {
+        this.$refs.flip.play()
+      }
+    }
   }
 </script>
 
-<style>
+<style lang="scss">
   body {
     margin: 0;
     padding: 0;
@@ -24,8 +48,26 @@
     height: 100vh;
     overflow: hidden;
     text-align: center;
+    position: relative;
     font-family: 'Microsoft YaHei', Helvetica, Arial, sans-serif;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
+  }
+
+  .musicBtn {
+    position: absolute;
+    top: 0;
+    left: 0;
+    img {
+      width: 100vw;
+      height: 100vh;
+      position: absolute;
+      left: 0;
+      top: 0;
+    }
+  }
+
+  video, audio {
+    display: none;
   }
 </style>

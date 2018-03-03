@@ -6,6 +6,7 @@
     <img v-show="aniVar.dot === 3" src="../../assets/p2/jiazai3.png">
     <img v-show="aniVar.dot === 4" src="../../assets/p2/jiazai4.png">
     <img v-show="aniVar.dot === 5" src="../../assets/p2/jiazai5.png">
+    <img v-show="aniVar.dot === 6" src="../../assets/p2/jiazai6.png">
     <img v-show="aniVar.text === 0" src="../../assets/p2/1.png">
     <img v-show="aniVar.text === 1" src="../../assets/p2/2.png">
     <img v-show="aniVar.work === 0" src="../../assets/p2/5.png">
@@ -38,13 +39,13 @@
         this.aniVar.work = 0
         this.aniVar.bulb = 0
 
-        aniOnce(this, 'dot', 6).then(() => {
+        aniOnce(this, 'dot', 7).then(() => {
           aniLoop(this, 'text', 2)
 
           setTimeout(() => {
             aniLoop(this, 'work', 3)
             aniLoop(this, 'bulb', 2)
-          }, 600)
+          }, 800)
         })
       }
     }
@@ -55,6 +56,6 @@
   .page2 {
     width: 100vw;
     height: 100vh;
-    background-color: #6451ad;
+    background-color: #5948A3;
   }
 </style>
