@@ -47,7 +47,7 @@
     watch: {
       moveIn (isMoveIn) {
         isMoveIn
-          ? this.animate()
+          ? setTimeout(this.animate.bind(this), 700)
           : this.reset()
       }
     }
