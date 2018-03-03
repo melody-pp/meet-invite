@@ -8,9 +8,9 @@
     <img v-show="aniVar.dot === 5" src="../../assets/p2/jiazai5.png">
     <img v-show="aniVar.text === 0" src="../../assets/p2/1.png">
     <img v-show="aniVar.text === 1" src="../../assets/p2/2.png">
-    <img src="../../assets/p2/5.png">
-    <img v-show="aniVar.work === 0" src="../../assets/p2/6.png">
-    <img v-show="aniVar.work === 1" src="../../assets/p2/7.png">
+    <img v-show="aniVar.work === 0" src="../../assets/p2/5.png">
+    <img v-show="aniVar.work === 1" src="../../assets/p2/6.png">
+    <img v-show="aniVar.work === 2" src="../../assets/p2/7.png">
     <img v-show="aniVar.bulb === 0" src="../../assets/p2/3.png">
     <img v-show="aniVar.bulb === 1" src="../../assets/p2/4.png">
   </div>
@@ -35,10 +35,17 @@
     },
     methods: {
       animate () {
-        aniLoop(this, 'work', 2)
-        aniLoop(this, 'bulb', 2)
+        this.aniVar.work = 0
+        this.aniVar.bulb = 0
 
-        aniOnce(this, 'dot', 6).then(() => aniLoop(this, 'text', 2))
+        aniOnce(this, 'dot', 6).then(() => {
+          aniLoop(this, 'text', 2)
+
+          setTimeout(() => {
+            aniLoop(this, 'work', 3)
+            aniLoop(this, 'bulb', 2)
+          }, 600)
+        })
       }
     }
   }
