@@ -3,16 +3,17 @@
        :style="{transform: `translate3d(0,-${current*100}vh,0)`}">
 
     <div class="page">
-      <Page1/>
+      <Page1 :moveIn="current===0"/>
     </div>
 
     <div class="page">
-      <Page2/>
+      <Page2 :moveIn="current===1"/>
     </div>
   </div>
 </template>
 
 <script>
+  import { clearAll } from '../util'
   import Page1 from './page1/Page1'
   import Page2 from './page2/Page2'
 
@@ -44,6 +45,7 @@
           return
         }
 
+        clearAll()
         this.current++
         this.isMoving = true
         setTimeout(() => this.isMoving = false, 1000)
@@ -53,6 +55,7 @@
           return
         }
 
+        clearAll()
         this.current--
         this.isMoving = true
         setTimeout(() => this.isMoving = false, 1000)
@@ -61,7 +64,7 @@
   }
 </script>
 
-<style scoped>
+<style lang='scss'>
   .main {
     transition: all 700ms ease-out;
   }
@@ -71,5 +74,13 @@
     height: 100vh;
     overflow: hidden;
     position: relative;
+
+    img {
+      width: 100vw;
+      height: 100vh;
+      position: absolute;
+      top: 0;
+      left: 0;
+    }
   }
 </style>
