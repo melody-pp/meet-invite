@@ -2,7 +2,7 @@ const aniOnce = (context, key, n) => {
   return new Promise(resolve => {
     for (let i = 0; i <= n; i++) {
       setTimeout(() => {
-        context[key] = i
+        context.aniVar[key] = i
         i === n && resolve()
       }, i * 200)
     }
@@ -11,7 +11,7 @@ const aniOnce = (context, key, n) => {
 
 const aniLoop = (context, key, n) => {
   context[key] = 0
-  setInterval(() => context[key] = (context[key] + 1) % n, 200)
+  setInterval(() => context.aniVar[key] = (context.aniVar[key] + 1) % n, 200)
 }
 
 const loop = () => {}

@@ -1,0 +1,1 @@
+export { animateMixin } from './animateMixin'
