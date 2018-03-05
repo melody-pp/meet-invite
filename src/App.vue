@@ -22,7 +22,7 @@
       }
     },
     mounted () {
-      this.play()
+      this.$refs.bg.play()
     },
     methods: {
       play () {

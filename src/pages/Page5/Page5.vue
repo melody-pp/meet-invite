@@ -6,6 +6,7 @@
     <img v-show="aniVar.dot === 3" src="../../assets/p5/jiazai3.png">
     <img v-show="aniVar.dot === 4" src="../../assets/p5/jiazai4.png">
     <img v-show="aniVar.dot === 5" src="../../assets/p5/jiazai5.png">
+    <img v-show="aniVar.dot === 6" src="../../assets/p5/jiazai6.png">
     <img v-show="aniVar.text === 0" src="../../assets/p5/1.png">
     <img v-show="aniVar.text === 1" src="../../assets/p5/2.png">
     <img v-show="aniVar.struggle === 0" src="../../assets/p5/3.png">
@@ -34,7 +35,7 @@
       animate () {
         this.aniVar.struggle = 0
 
-        aniOnce(this, 'dot', 6).then(() => {
+        aniOnce(this, 'dot', 7).then(() => {
           aniLoop(this, 'text', 2)
 
           setTimeout(() => {

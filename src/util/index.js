@@ -1,4 +1,4 @@
-const aniOnce = (context, key, n, speed = 200) => {
+const aniOnce = (context, key, n, speed = 150) => {
   return new Promise(resolve => {
     for (let i = 0; i <= n; i++) {
       setTimeout(() => {
@@ -9,7 +9,7 @@ const aniOnce = (context, key, n, speed = 200) => {
   })
 }
 
-const aniLoop = (context, key, n, speed = 200) => {
+const aniLoop = (context, key, n, speed = 150) => {
   context[key] = 0
   setInterval(() => context.aniVar[key] = (context.aniVar[key] + 1) % n, speed)
 }
