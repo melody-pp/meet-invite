@@ -16,8 +16,11 @@
     <img v-show="aniVar.rocket === 1" src="../../assets/p1/6.png">
     <img v-show="aniVar.UFO === 0" src="../../assets/p1/3.png">
     <img v-show="aniVar.UFO === 1" src="../../assets/p1/4.png">
+    <img class="loading" v-show="aniVar.loading === 0" src="../../assets/p1/loading1.png">
+    <img class="loading" v-show="aniVar.loading === 1" src="../../assets/p1/loading2.png">
+    <img class="loading" v-show="aniVar.loading === 2" src="../../assets/p1/loading3.png">
     <img class="finger" src="../../assets/shouzhi.png">
-    <FileUpload class="FileUpload"/>
+    <!--<FileUpload class="FileUpload"/>-->
   </div>
 </template>
 
@@ -37,7 +40,8 @@
           text: null,
           earth: null,
           rocket: null,
-          UFO: null
+          UFO: null,
+          loading: null,
         }
       }
     },
@@ -49,6 +53,7 @@
         aniLoop(this, 'earth', 4, 100)
         aniLoop(this, 'rocket', 2)
         aniLoop(this, 'UFO', 2)
+        aniLoop(this, 'loading', 3)
 
         aniOnce(this, 'dot', 6).then(() => aniLoop(this, 'text', 2))
       }
@@ -66,7 +71,15 @@
       height: auto;
       position: absolute;
       left: 50%;
-      bottom: 1vh;
+      bottom: 3vh;
+      transform: translateX(-50%);
+    }
+    .loading {
+      width: 45.6vw;
+      height: auto;
+      position: absolute;
+      bottom: 16vh;
+      left: 50%;
       transform: translateX(-50%);
     }
     .FileUpload {

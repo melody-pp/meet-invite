@@ -5,8 +5,8 @@
       <img @click="pause" v-show="music" src="./assets/on.png">
       <img @click="play" v-show="!music" src="./assets/off.png">
     </div>
-    <audio ref="bg" src="./assets/mp3/bg.mp3" autoplay loop></audio>
     <audio ref="flip" src="./assets/mp3/flip.mp3"></audio>
+    <audio ref="bg" src="./assets/mp3/bg.mp3" autoplay loop></audio>
   </div>
 </template>
 
