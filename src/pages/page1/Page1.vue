@@ -17,16 +17,19 @@
     <img v-show="aniVar.UFO === 0" src="../../assets/p1/3.png">
     <img v-show="aniVar.UFO === 1" src="../../assets/p1/4.png">
     <img class="finger" src="../../assets/shouzhi.png">
+    <FileUpload class="FileUpload"/>
   </div>
 </template>
 
 <script>
   import { animateMixin } from '../../mixins'
   import { aniOnce, aniLoop } from '../../util'
+  import FileUpload from '../fileUpload'
 
   export default {
     name: 'page1',
     mixins: [animateMixin],
+    components: {FileUpload},
     data () {
       return {
         aniVar: {
@@ -65,6 +68,15 @@
       left: 50%;
       bottom: 1vh;
       transform: translateX(-50%);
+    }
+    .FileUpload {
+      position: absolute;
+      top: 0;
+      left: 0;
+      z-index: 100;
+      img {
+        border: none;
+      }
     }
   }
 </style>
