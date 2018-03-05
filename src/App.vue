@@ -1,11 +1,11 @@
 <template>
   <div id="app">
     <MainFrame @flip="flip"/>
-    <!--<div class="musicBtn">-->
-    <!--<img @click="pause" v-show="music" src="./assets/on.png">-->
-    <!--<img @click="play" v-show="!music" src="./assets/off.png">-->
-    <!--</div>-->
-    <video ref="bg" src="./assets/mp3/bg.mp4" autoplay loop></video>
+    <div class="musicBtn">
+      <img @click="pause" v-show="music" src="./assets/on.png">
+      <img @click="play" v-show="!music" src="./assets/off.png">
+    </div>
+    <audio ref="bg" src="./assets/mp3/bg.mp3" autoplay loop></audio>
     <audio ref="flip" src="./assets/mp3/flip.mp3"></audio>
   </div>
 </template>
@@ -20,6 +20,9 @@
       return {
         music: true
       }
+    },
+    mounted () {
+      this.play()
     },
     methods: {
       play () {
@@ -56,14 +59,10 @@
 
   .musicBtn {
     position: absolute;
-    top: 0;
-    left: 0;
+    top: 2vh;
+    right: 5vw;
     img {
-      width: 100vw;
-      height: 100vh;
-      position: absolute;
-      left: 0;
-      top: 0;
+      width: 17.07vw;
     }
   }
 

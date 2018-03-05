@@ -16,6 +16,7 @@
     <img v-show="aniVar.rocket === 1" src="../../assets/p1/6.png">
     <img v-show="aniVar.UFO === 0" src="../../assets/p1/3.png">
     <img v-show="aniVar.UFO === 1" src="../../assets/p1/4.png">
+    <img class="finger" src="../../assets/shouzhi.png">
   </div>
 </template>
 
@@ -57,5 +58,13 @@
     width: 100vw;
     height: 100vh;
     background-color: #014d87;
+    .finger {
+      width: 8.933vw;
+      height: auto;
+      position: absolute;
+      left: 50%;
+      bottom: 1vh;
+      transform: translateX(-50%);
+    }
   }
 </style>
