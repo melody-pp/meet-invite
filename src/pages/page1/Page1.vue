@@ -19,8 +19,9 @@
     <img class="loading" v-show="aniVar.loading === 0" src="../../assets/p1/loading1.png">
     <img class="loading" v-show="aniVar.loading === 1" src="../../assets/p1/loading2.png">
     <img class="loading" v-show="aniVar.loading === 2" src="../../assets/p1/loading3.png">
-    <img class="finger" src="../../assets/shouzhi.png">
-    <!--<FileUpload class="FileUpload"/>-->
+    <transition enter-active-class="animated fadeIn">
+      <img v-show="loaded" class="finger" src="../../assets/shouzhi.png">
+    </transition>
   </div>
 </template>
 
@@ -42,7 +43,8 @@
           rocket: null,
           UFO: null,
           loading: null,
-        }
+        },
+        loaded: false
       }
     },
     mounted () {
@@ -50,12 +52,19 @@
     },
     methods: {
       animate () {
+        const loadingTimer = aniLoop(this, 'loading', 3, 500)
+
         aniLoop(this, 'earth', 4, 100)
         aniLoop(this, 'rocket', 2)
         aniLoop(this, 'UFO', 2)
-        aniLoop(this, 'loading', 3)
 
-        aniOnce(this, 'dot', 6).then(() => aniLoop(this, 'text', 2))
+        window.addEventListener('load', () => {
+          clearInterval(loadingTimer)
+          this.aniVar.loading = null
+          this.loaded = true
+          this.$emit('loaded')
+          aniOnce(this, 'dot', 6).then(() => aniLoop(this, 'text', 2))
+        })
       }
     }
   }

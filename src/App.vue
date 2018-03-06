@@ -69,4 +69,24 @@
   video, audio {
     display: none;
   }
+
+  .animated {
+    animation-duration: 1s;
+    animation-fill-mode: both
+  }
+
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+    }
+
+    to {
+      opacity: 1;
+    }
+  }
+
+  .fadeIn {
+    animation-name: fadeIn;
+  }
+
 </style>

@@ -9,7 +9,7 @@
     <img v-show="aniVar.text === 0" src="../../assets/p6/1.png">
     <img v-show="aniVar.text === 1" src="../../assets/p6/2.png">
     <img src="../../assets/p6/3.png">
-    <img src="../../assets/p6/4.png">
+    <img :class="{rocket: true, active}" src="../../assets/p6/4.png">
   </div>
 </template>
 
@@ -27,15 +27,16 @@
           text: null,
           struggle: null,
         },
+        active: false
       }
     },
     methods: {
       animate () {
-        this.aniVar.struggle = 0
+        this.active = false
 
         aniOnce(this, 'dot', 6).then(() => {
+          this.active = true
           aniLoop(this, 'text', 2)
-
         })
       }
     }
@@ -47,5 +48,13 @@
     width: 100vw;
     height: 100vh;
     background-color: #008589;
+  }
+
+  .rocket {
+    top: 20vh;
+    &.active {
+      top: 0;
+      transition: all 1s ease-out;
+    }
   }
 </style>

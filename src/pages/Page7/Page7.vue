@@ -28,10 +28,8 @@
     },
     methods: {
       animate () {
-
         aniLoop(this, 'title', 2)
         aniLoop(this, 'picture', 4)
-
       }
     }
   }

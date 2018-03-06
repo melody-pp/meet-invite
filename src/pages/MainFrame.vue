@@ -1,37 +1,40 @@
 <template>
-  <div class="main" @touchstart="touchstart" @touchend="touchend" @touchmove="touchmove"
-       :style="{transform: `translate3d(0,-${current*100}vh,0)`}">
-    <div class="page">
-      <Page1 :moveIn="current===0"/>
+  <div>
+    <div class="main" @touchstart="touchstart" @touchend="touchend" @touchmove="touchmove"
+         :style="{transform: `translate3d(0,-${current*100}vh,0)`}">
+      <div class="page">
+        <Page1 :moveIn="current===0" @loaded="loaded = true"/>
+      </div>
+      <div class="page">
+        <Page2 :moveIn="current===1"/>
+      </div>
+      <div class="page">
+        <Page3 :moveIn="current===2"/>
+      </div>
+      <div class="page">
+        <Page4 :moveIn="current===3"/>
+      </div>
+      <div class="page">
+        <Page5 :moveIn="current===4"/>
+      </div>
+      <div class="page">
+        <Page6 :moveIn="current===5"/>
+      </div>
+      <div class="page">
+        <Page7 :moveIn="current===6"/>
+      </div>
+      <div class="page">
+        <Page8 :moveIn="current===7" @getSelfie="setSelfie"/>
+      </div>
+      <div class="page">
+        <Page9 :moveIn="current===8" @setGender="setGender"/>
+      </div>
+      <div class="page">
+        <Male v-show="gender" :moveIn="current===9" :imgUrl="imgUrl"/>
+        <Female v-show="!gender" :moveIn="current===9" :imgUrl="imgUrl"/>
+      </div>
     </div>
-    <div class="page">
-      <Page2 :moveIn="current===1"/>
-    </div>
-    <div class="page">
-      <Page3 :moveIn="current===2"/>
-    </div>
-    <div class="page">
-      <Page4 :moveIn="current===3"/>
-    </div>
-    <div class="page">
-      <Page5 :moveIn="current===4"/>
-    </div>
-    <div class="page">
-      <Page6 :moveIn="current===5"/>
-    </div>
-    <div class="page">
-      <Page7 :moveIn="current===6"/>
-    </div>
-    <div class="page">
-      <Page8 :moveIn="current===7" @getSelfie="setSelfie"/>
-    </div>
-    <div class="page">
-      <Page9 :moveIn="current===8" @setGender="setGender"/>
-    </div>
-    <div class="page">
-      <Male v-show="gender" :moveIn="current===9" :imgUrl="imgUrl"/>
-      <Female v-show="!gender" :moveIn="current===9" :imgUrl="imgUrl"/>
-    </div>
+    <img v-show="current" class="arrow" src="../assets/jiantou.png">
   </div>
 </template>
 
@@ -57,7 +60,8 @@
         current: 0,
         isMoving: false,
         gender: 1,
-        imgUrl: ''
+        imgUrl: '',
+        loaded: false
       }
     },
     methods: {
@@ -78,7 +82,7 @@
         }
       },
       moveDown (force) {
-        if (this.isMoving || this.current >= 9) {
+        if (!this.loaded || this.isMoving || this.current >= 9) {
           return
         }
 
@@ -94,7 +98,7 @@
         setTimeout(() => this.isMoving = false, 1000)
       },
       moveUp () {
-        if (this.isMoving || !this.current) {
+        if (this.isMoving || this.current < 2) {
           return
         }
         if (this.current === 8) {
@@ -125,16 +129,23 @@
       width: 100vw;
       height: 100vh;
       position: absolute;
-      /*top: 0;*/
       left: 0;
+    }
+
+    .page {
+      width: 100vw;
+      height: 100vh;
+      overflow: hidden;
+      position: relative;
     }
   }
 
-  .page {
-    width: 100vw;
-    height: 100vh;
-    overflow: hidden;
-    position: relative;
-
+  .arrow {
+    position: fixed;
+    width: 12.93vw;
+    height: auto;
+    bottom: 1vh;
+    left: 50vw;
+    transform: translateX(-50%);
   }
 </style>
