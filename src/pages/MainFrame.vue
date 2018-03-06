@@ -34,7 +34,7 @@
         <Female v-show="!gender" :moveIn="current===9" :imgUrl="imgUrl"/>
       </div>
     </div>
-    <img v-show="current" class="arrow" src="../assets/jiantou.png">
+    <img v-show="current>0 && current<7" class="arrow" src="../assets/jiantou.png">
   </div>
 </template>
 
@@ -98,12 +98,10 @@
         setTimeout(() => this.isMoving = false, 1000)
       },
       moveUp () {
-        if (this.isMoving || this.current < 2) {
+        if (this.isMoving || this.current < 2 || this.current > 7) {
           return
         }
-        if (this.current === 8) {
-          return
-        }
+
         clearAll()
         this.current--
         this.$emit('flip')

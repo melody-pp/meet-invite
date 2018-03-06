@@ -72,7 +72,7 @@
 
   .animated {
     animation-duration: 1s;
-    animation-fill-mode: both
+    animation-fill-mode: both;
   }
 
   @keyframes fadeIn {

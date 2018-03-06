@@ -14,7 +14,9 @@
     <img v-show="aniVar.superman === 1" src="../../assets/p10/5.png">
     <img v-show="aniVar.superman === 2" src="../../assets/p10/6.png">
     <img v-show="aniVar.superman === 3" src="../../assets/p10/7.png">
-    <img src="../../assets/p10/1.png">
+    <img v-show="words === 0" class="wordsAnimate" src="../../assets/p10/1.png">
+    <img v-show="words === 1" class="wordsAnimate" src="../../assets/p10/2.png">
+    <img v-show="words === 2" class="wordsAnimate" src="../../assets/p10/3.png">
   </div>
 </template>
 
@@ -34,11 +36,12 @@
           UFO: null,
           superman: null
         },
+        words: null
       }
     },
     methods: {
       animate () {
-
+        this.words = Math.floor(Math.random() * 3)
         aniLoop(this, 'earth', 4, 100)
         aniLoop(this, 'rocket', 2)
         aniLoop(this, 'UFO', 2)
@@ -77,6 +80,20 @@
       background-size: cover;
       background-position: center;
     }
+    .wordsAnimate {
+      animation-duration: 1s;
+      animation-fill-mode: both;
+      animation-name: wordsAnimate;
+      animation-iteration-count: infinite;
+    }
+    @keyframes wordsAnimate {
+      from {
+        transform: rotate3d(0, 0, 0, 0);
+      }
 
+      50% {
+        transform: rotate3d(0, 0, 1, 5deg);
+      }
+    }
   }
 </style>
