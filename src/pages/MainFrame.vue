@@ -17,14 +17,20 @@
       <Page5 :moveIn="current===4"/>
     </div>
     <div class="page">
-      <Page9 :moveIn="current===5" @getSelfie="setSelfie"/>
+      <Page6 :moveIn="current===5"/>
     </div>
     <div class="page">
-      <Page10 :moveIn="current===6" @setGender="setGender"/>
+      <Page7 :moveIn="current===6"/>
     </div>
     <div class="page">
-      <Male v-if="gender" :moveIn="current===7" :imgUrl="imgUrl"/>
-      <Female v-else :moveIn="current===7" :imgUrl="imgUrl"/>
+      <Page8 :moveIn="current===7" @getSelfie="setSelfie"/>
+    </div>
+    <div class="page">
+      <Page9 :moveIn="current===8" @setGender="setGender"/>
+    </div>
+    <div class="page">
+      <Male v-if="gender" :moveIn="current===9" :imgUrl="imgUrl"/>
+      <Female v-else :moveIn="current===9" :imgUrl="imgUrl"/>
     </div>
   </div>
 </template>
@@ -36,17 +42,19 @@
   import Page3 from './page3/Page3'
   import Page4 from './page4/Page4'
   import Page5 from './page5/Page5'
-  import Page9 from './page9/Page9'
-  import Page10 from './page10/Page10'
-  import Male from './Page11/Male'
-  import Female from './page11/Female'
+  import Page6 from './page6/Page6'
+  import Page7 from './page7/Page7'
+  import Page8 from './page8/Page8'
+  import Page9 from './Page9/Page9'
+  import Male from './Page10/Male'
+  import Female from './Page10/Female'
 
   export default {
     name: 'main-frame',
-    components: {Page1, Page2, Page3, Page4, Page5, Page9, Page10, Male, Female},
+    components: {Page1, Page2, Page3, Page4, Page5, Page6, Page7, Page8, Page9, Male, Female},
     data () {
       return {
-        current: 5,
+        current: 0,
         isMoving: false,
         gender: 1,
         imgUrl: ''
@@ -75,7 +83,7 @@
         }
 
         // 拍照页、选择性别页禁止直接往下翻
-        if (!force && (this.current === 5 || this.current === 6)) {
+        if (!force && (this.current === 7 || this.current === 8)) {
           return
         }
 
@@ -89,7 +97,9 @@
         if (this.isMoving || !this.current) {
           return
         }
-
+        if (this.current === 8) {
+          return
+        }
         clearAll()
         this.current--
         this.$emit('flip')

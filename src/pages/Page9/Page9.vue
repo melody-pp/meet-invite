@@ -1,18 +1,11 @@
 <template>
   <div class="page9">
-    <img v-show="aniVar.circle === 0" src="../../assets/p9/2.png">
-    <img v-show="aniVar.circle === 1" src="../../assets/p9/3.png">
-    <img v-show="aniVar.circle === 2" src="../../assets/p9/4.png">
-    <img v-show="aniVar.circle === 3" src="../../assets/p9/5.png">
-    <img v-show="aniVar.circle === 4" src="../../assets/p9/6.png">
-    <img src="../../assets/p9/1.png">
-    <img v-show="aniVar.btnBg === 0" src="../../assets/p9/7.png">
-    <img v-show="aniVar.btnBg === 1" src="../../assets/p9/8.png">
-    <img v-show="aniVar.btnBg === 2" src="../../assets/p9/9.png">
-    <img class="rocket" src="../../assets/p9/huojian.png"
-         @touchmove="touchmove" @touchend="touchend"
-         :style="{bottom: `calc(9.5vh + ${y}px)`}">
-    <input ref="input" type="file" accept="image/*" @change="changeFile">
+    <img v-show="aniVar.title === 0" src="../../assets/p9/1.png">
+    <img v-show="aniVar.title === 1" src="../../assets/p9/2.png">
+    <img v-show="aniVar.picture === 0" src="../../assets/p9/3.png">
+    <img v-show="aniVar.picture === 1" src="../../assets/p9/4.png">
+    <img class="boy" @touchstart="setGender(1)" src="../../assets/p9/nan.png">
+    <img class="girl" @touchstart="setGender(0)" src="../../assets/p9/nv.png">
   </div>
 </template>
 
@@ -26,52 +19,18 @@
     data () {
       return {
         aniVar: {
-          circle: null,
-          btnBg: null,
+          title: null,
+          picture: null,
         },
-        y: 0,
-        startY: null
       }
     },
     methods: {
       animate () {
-        aniLoop(this, 'circle', 5)
-        aniLoop(this, 'btnBg', 3, 300)
+        aniLoop(this, 'title', 2)
+        aniLoop(this, 'picture', 2)
       },
-      touchmove (event) {
-        if (this.y > 150) {
-          return this.choseFile()
-        }
-
-        const currentY = event.changedTouches[0].clientY
-        if (this.startY) {
-          this.y += this.startY - currentY
-        }
-
-        this.startY = currentY
-      },
-      touchend () {
-        this.startY = null
-      },
-      choseFile () {
-        this.$refs.input.click()
-      },
-      setSelfie (imgUrl) {
-        this.$emit('setSelfie', imgUrl)
-      },
-      changeFile(){
-        const reader = new FileReader()
-        const file = this.$refs.input.files[0]
-
-        reader.readAsDataURL(file)
-        reader.onload = e => this.$emit('getSelfie',e.target.result)
-
-        const formData = new FormData
-        formData.append('file',file)
-
-        const  request = new XMLHttpRequest();
-        request.open("POST", "http://foo.com/submitform.php");
-        request.send(formData);
+      setGender (gender) {
+        this.$emit('setGender', gender)
       }
     }
   }
@@ -81,16 +40,19 @@
   .page9 {
     width: 100vw;
     height: 100vh;
-    background-color: #014d87;
-    .rocket {
-      width: 14.27vw;
+    background-color: #06427a;
+    .boy {
+      width: 22.4vw;
       height: auto;
-      position: absolute;
-      left: 50%;
-      transform: translateX(-50%);
+      bottom: 13vh;
+      left: 18vw;
     }
-    input {
-      position: absolute;
+    .girl {
+      width: 23.73vw;
+      height: auto;
+      bottom: 13vh;
+      left: auto;
+      right: 16vw;
     }
   }
 </style>
