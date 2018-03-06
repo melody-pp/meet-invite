@@ -1,17 +1,15 @@
 <template>
   <div class="male">
-    <div class="avatarBox">
-      <img :src="imgUrl" class="avatar">
-    </div>
+    <div class="avatarBox" :style="{backgroundImage:`url(${imgUrl})`}"></div>
 
-    <!--<img v-show="aniVar.earth === 0" src="../../assets/p1/7.png">-->
-    <!--<img v-show="aniVar.earth === 1" src="../../assets/p1/8.png">-->
-    <!--<img v-show="aniVar.earth === 2" src="../../assets/p1/9.png">-->
-    <!--<img v-show="aniVar.earth === 3" src="../../assets/p1/10.png">-->
-    <!--<img v-show="aniVar.rocket === 0" src="../../assets/p1/5.png">-->
-    <!--<img v-show="aniVar.rocket === 1" src="../../assets/p1/6.png">-->
-    <!--<img v-show="aniVar.UFO === 0" src="../../assets/p1/3.png">-->
-    <!--<img v-show="aniVar.UFO === 1" src="../../assets/p1/4.png">-->
+    <img v-show="aniVar.earth === 0" src="../../assets/p1/7.png">
+    <img v-show="aniVar.earth === 1" src="../../assets/p1/8.png">
+    <img v-show="aniVar.earth === 2" src="../../assets/p1/9.png">
+    <img v-show="aniVar.earth === 3" src="../../assets/p1/10.png">
+    <img v-show="aniVar.rocket === 0" src="../../assets/p1/5.png">
+    <img v-show="aniVar.rocket === 1" src="../../assets/p1/6.png">
+    <img v-show="aniVar.UFO === 0" src="../../assets/p1/3.png">
+    <img v-show="aniVar.UFO === 1" src="../../assets/p1/4.png">
     <img v-show="aniVar.superman === 0" src="../../assets/p10/4.png">
     <img v-show="aniVar.superman === 1" src="../../assets/p10/5.png">
     <img v-show="aniVar.superman === 2" src="../../assets/p10/6.png">
@@ -70,18 +68,14 @@
       right: 16vw;
     }
     .avatarBox {
-      width: 10vw;
-      height: 10vw;
+      width: 20vw;
+      height: 15.5vh;
       overflow: hidden;
-      background-color: #6fff4f;
-      .avatar {
-        width: 28vw;
-        height: auto;
-        position: absolute;
-        left: auto;
-        right: 36vw;
-        top: 47vw;
-      }
+      position: absolute;
+      right: 41vw;
+      top: 27vh;
+      background-size: cover;
+      background-position: center;
     }
 
   }

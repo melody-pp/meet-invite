@@ -11,11 +11,7 @@ const aniOnce = (context, key, n, speed = 150) => {
 
 const aniLoop = (context, key, n, speed = 150) => {
   context.aniVar[key] = 0
-  setInterval(() => {
-    try {
-      context.aniVar[key] = (context.aniVar[key] + 1) % n
-    } catch (e) {console.log(e)}
-  }, speed)
+  setInterval(() => context.aniVar[key] = (context.aniVar[key] + 1) % n, speed)
 }
 
 const loop = () => {}

@@ -29,8 +29,8 @@
       <Page9 :moveIn="current===8" @setGender="setGender"/>
     </div>
     <div class="page">
-      <Male v-if="gender" :moveIn="current===9" :imgUrl="imgUrl"/>
-      <Female v-else :moveIn="current===9" :imgUrl="imgUrl"/>
+      <Male v-show="gender" :moveIn="current===9" :imgUrl="imgUrl"/>
+      <Female v-show="!gender" :moveIn="current===9" :imgUrl="imgUrl"/>
     </div>
   </div>
 </template>
@@ -78,7 +78,7 @@
         }
       },
       moveDown (force) {
-        if (this.isMoving || this.current >= 8) {
+        if (this.isMoving || this.current >= 9) {
           return
         }
 
