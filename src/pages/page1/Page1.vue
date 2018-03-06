@@ -22,7 +22,7 @@
     <transition enter-active-class="animated fadeIn">
       <img v-show="loaded" class="finger" src="../../assets/shouzhi.png">
     </transition>
-    <FileUpload class="FileUpload"/>
+    <!--<FileUpload class="FileUpload"/>-->
   </div>
 </template>
 
