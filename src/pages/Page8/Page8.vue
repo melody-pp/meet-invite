@@ -5,10 +5,13 @@
     <img v-show="aniVar.circle === 2" src="../../assets/p8/4.png">
     <img v-show="aniVar.circle === 3" src="../../assets/p8/5.png">
     <img v-show="aniVar.circle === 4" src="../../assets/p8/6.png">
-    <img src="../../assets/p8/1.png">
+
+    <transition enter-active-class="animated zoomIn">
+      <img v-show="title" src="../../assets/p8/1.png">
+    </transition>
     <img @click="choseFile" v-show="aniVar.btnBg === 0" src="../../assets/p8/7.png">
     <img @click="choseFile" v-show="aniVar.btnBg === 1" src="../../assets/p8/8.png">
-    <img class="rocket" src="../../assets/p8/huojian.png">
+    <img :class="{rocket: true, active:rocket}" src="../../assets/p8/huojian.png">
     <input ref="input" type="file" accept="image/*" @change="changeFile">
   </div>
 </template>
@@ -27,7 +30,9 @@
           btnBg: null,
         },
         y: 0,
-        startY: null
+        startY: null,
+        rocket: false,
+        title: false
       }
     },
     methods: {
@@ -55,6 +60,15 @@
         request.open('post', '/nianhui/index.php/Meet/upload')
         request.send(formData)
       }
+    },
+    watch: {
+      moveIn (newVal) {
+        setTimeout(() => {
+          this.rocket = newVal
+          this.title = newVal
+        }, 500)
+
+      }
     }
   }
 </script>
@@ -70,7 +84,13 @@
       position: absolute;
       left: 50%;
       transform: translateX(-50%);
-      bottom: 37vh;
+      bottom: 30vh;
+      opacity: 0;
+      &.active {
+        opacity: 1;
+        bottom: 37vh;
+        transition: all 1s ease-out;
+      }
     }
     input {
       position: absolute;
