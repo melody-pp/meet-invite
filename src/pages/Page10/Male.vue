@@ -57,19 +57,6 @@
     width: 100vw;
     height: 100vh;
     background-color: #00447c;
-    .boy {
-      width: 22.4vw;
-      height: auto;
-      bottom: 13vh;
-      left: 18vw;
-    }
-    .girl {
-      width: 23.73vw;
-      height: auto;
-      bottom: 13vh;
-      left: auto;
-      right: 16vw;
-    }
     .avatarBox {
       width: 20vw;
       height: 15.5vh;
@@ -78,7 +65,7 @@
       right: 41vw;
       top: 27vh;
       background-size: cover;
-      background-position: center;
+      background-position: center center;
     }
     .wordsAnimate {
       animation-duration: 1s;

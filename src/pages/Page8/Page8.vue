@@ -47,18 +47,17 @@
         this.$emit('setSelfie', imgUrl)
       },
       changeFile () {
-        const reader = new FileReader()
-        const file = this.$refs.input.files[0]
-
-        reader.readAsDataURL(file)
-        reader.onload = e => this.$emit('getSelfie', e.target.result)
-
         const formData = new FormData
-        formData.append('file', file)
+        const xhr = new XMLHttpRequest()
 
-        const request = new XMLHttpRequest()
-        request.open('post', '/nianhui/index.php/Meet/upload')
-        request.send(formData)
+        formData.append('file', this.$refs.input.files[0])
+        xhr.open('post', '/nianhui/index.php/Meet/upload')
+        xhr.send(formData)
+        xhr.onreadystatechange = () => {
+          if (xhr.readyState === XMLHttpRequest.DONE && xhr.status === 200) {
+            this.$emit('getSelfie', xhr.responseText)
+          }
+        }
       }
     },
     watch: {

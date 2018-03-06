@@ -1,17 +1,20 @@
 <template>
   <div class="famale">
-    <img :src="imgUrl" class="avatar">
+    <div class="avatarBox" :style="{backgroundImage:`url(${imgUrl})`}"></div>
     <img v-show="aniVar.earth === 0" src="../../assets/p1/7.png">
     <img v-show="aniVar.earth === 1" src="../../assets/p1/8.png">
     <img v-show="aniVar.earth === 2" src="../../assets/p1/9.png">
     <img v-show="aniVar.earth === 3" src="../../assets/p1/10.png">
-    <img v-show="aniVar.rocket === 0" src="../../assets/p1/5.png">
-    <img v-show="aniVar.rocket === 1" src="../../assets/p1/6.png">
+    <!--<img v-show="aniVar.rocket === 0" src="../../assets/p1/5.png">-->
+    <!--<img v-show="aniVar.rocket === 1" src="../../assets/p1/6.png">-->
     <img v-show="aniVar.UFO === 0" src="../../assets/p1/3.png">
     <img v-show="aniVar.UFO === 1" src="../../assets/p1/4.png">
     <img v-show="aniVar.superwoman === 0" src="../../assets/p11/4.png">
     <img v-show="aniVar.superwoman === 1" src="../../assets/p11/5.png">
-    <img src="../../assets/p11/1.png">
+    <img src="../../assets/p11/5.png">
+    <img v-show="words === 0" class="wordsAnimate" src="../../assets/p11/1.png">
+    <img v-show="words === 1" class="wordsAnimate" src="../../assets/p11/2.png">
+    <img v-show="words === 2" class="wordsAnimate" src="../../assets/p11/3.png">
 
   </div>
 </template>
@@ -28,16 +31,18 @@
       return {
         aniVar: {
           earth: null,
-          rocket: null,
+          // rocket: null,
           UFO: null,
           superwoman: null
         },
+        words: null
       }
     },
     methods: {
       animate () {
+        this.words = Math.floor(Math.random() * 3)
         aniLoop(this, 'earth', 4, 100)
-        aniLoop(this, 'rocket', 2)
+        // aniLoop(this, 'rocket', 2)
         aniLoop(this, 'UFO', 2)
         aniLoop(this, 'superwoman', 2)
       }
@@ -50,26 +55,30 @@
     width: 100vw;
     height: 100vh;
     background-color: #faa844;
-    .boy {
-      width: 22.4vw;
-      height: auto;
-      bottom: 13vh;
-      left: 18vw;
-    }
-    .girl {
-      width: 23.73vw;
-      height: auto;
-      bottom: 13vh;
-      left: auto;
-      right: 16vw;
-    }
-    .avatar {
-      width: 28vw;
-      height: auto;
+    .avatarBox {
+      width: 20vw;
+      height: 15.5vh;
+      overflow: hidden;
       position: absolute;
-      left: auto;
-      right: 36vw;
-      top: 47vw;
+      right: 32vw;
+      top: 17vh;
+      background-size: cover;
+      background-position: center;
+    }
+    .wordsAnimate {
+      animation-duration: 1s;
+      animation-fill-mode: both;
+      animation-name: wordsAnimate;
+      animation-iteration-count: infinite;
+    }
+    @keyframes wordsAnimate {
+      from {
+        transform: rotate3d(0, 0, 0, 0);
+      }
+
+      50% {
+        transform: rotate3d(0, 0, 1, 5deg);
+      }
     }
   }
 </style>
