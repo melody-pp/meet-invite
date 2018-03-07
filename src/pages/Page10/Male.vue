@@ -60,8 +60,8 @@
       height: 15.5vh;
       overflow: hidden;
       position: absolute;
-      right: 35.5vw;
-      top: 29.4vh;
+      right: 41vw;
+      top: 27vh;
       transform-origin: center;
       background-size: cover;
       background-position: center center;
@@ -69,11 +69,15 @@
       &.rotateRight {
         width: 15.5vh;
         height: 20vw;
+        right: 35.5vw;
+        top: 29.4vh;
         transform: rotateZ(90deg);
       }
       &.rotateLeft {
         width: 15.5vh;
         height: 20vw;
+        right: 35.5vw;
+        top: 29.4vh;
         transform: rotateZ(-90deg);
       }
     }
