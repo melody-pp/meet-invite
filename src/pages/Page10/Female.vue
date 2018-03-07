@@ -1,6 +1,6 @@
 <template>
-  <div class="famale">
-    <div class="avatarBox" :style="{backgroundImage:`url(${imgUrl})`}"></div>
+  <div class="female">
+    <div :class="{avatarBox:true,rotateLeft,rotateRight}" :style="{backgroundImage:`url(${imgUrl})`}"></div>
     <img v-show="aniVar.earth === 0" src="../../assets/p1/7.png">
     <img v-show="aniVar.earth === 1" src="../../assets/p1/8.png">
     <img v-show="aniVar.earth === 2" src="../../assets/p1/9.png">
@@ -19,22 +19,21 @@
 </template>
 
 <script>
-  import { animateMixin } from '../../mixins'
+  import { animateMixin, fixImgOriMixin } from '../../mixins'
   import { aniLoop } from '../../util'
 
   export default {
-    name: 'famale',
-    props: ['imgUrl'],
-    mixins: [animateMixin],
+    name: 'female',
+    mixins: [animateMixin, fixImgOriMixin],
     data () {
       return {
         aniVar: {
           earth: null,
           // rocket: null,
           // UFO: null,
-          superwoman: null
+          superwoman: null,
         },
-        words: null
+        words: null,
       }
     },
     methods: {
@@ -44,13 +43,13 @@
         // aniLoop(this, 'rocket', 2)
         // aniLoop(this, 'UFO', 2)
         aniLoop(this, 'superwoman', 2)
-      }
-    }
+      },
+    },
   }
 </script>
 
 <style scoped lang="scss">
-  .famale {
+  .female {
     width: 100vw;
     height: 100vh;
     background-color: #faa844;
@@ -61,8 +60,19 @@
       position: absolute;
       right: 32vw;
       top: 17vh;
+      transform-origin: center;
       background-size: cover;
       background-position: center;
+      &.rotateRight {
+        width: 15.5vh;
+        height: 20vw;
+        transform: rotateZ(90deg);
+      }
+      &.rotateLeft {
+        width: 15.5vh;
+        height: 20vw;
+        transform: rotateZ(-90deg);
+      }
     }
     .wordsAnimate {
       animation-duration: 1s;

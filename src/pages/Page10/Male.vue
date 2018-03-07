@@ -19,14 +19,12 @@
 </template>
 
 <script>
-  import EXIF from 'exif-js'
-  import { animateMixin } from '../../mixins'
-  import { aniOnce, aniLoop } from '../../util'
+  import { animateMixin, fixImgOriMixin } from '../../mixins'
+  import { aniLoop } from '../../util'
 
   export default {
     name: 'male',
-    props: ['imgUrl'],
-    mixins: [animateMixin],
+    mixins: [animateMixin, fixImgOriMixin],
     data () {
       return {
         aniVar: {
@@ -36,8 +34,6 @@
           superman: null,
         },
         words: null,
-        rotateLeft: false,
-        rotateRight: false,
       }
     },
     methods: {
@@ -49,23 +45,6 @@
         aniLoop(this, 'UFO', 2)
 
         aniLoop(this, 'superman', 2)
-      },
-      fixImgOri (img) {
-        const vm = this
-        EXIF.getData(img, function () {
-          const orientation = +EXIF.getTag(this, 'Orientation')
-          vm.rotateRight = orientation === 6
-          vm.rotateLeft = orientation === 8
-        })
-      },
-    },
-    watch: {
-      imgUrl (url) {
-        const image = new Image()
-        image.src = url
-        image.onload = () => {
-          this.fixImgOri(image)
-        }
       },
     },
   }
