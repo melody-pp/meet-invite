@@ -12,8 +12,6 @@
     <img v-show="aniVar.UFO === 1" src="../../assets/p1/4.png">
     <img v-show="aniVar.superman === 0" src="../../assets/p10/4.png">
     <img v-show="aniVar.superman === 1" src="../../assets/p10/5.png">
-    <img v-show="aniVar.superman === 2" src="../../assets/p10/6.png">
-    <img v-show="aniVar.superman === 3" src="../../assets/p10/7.png">
     <img v-show="words === 0" class="wordsAnimate" src="../../assets/p10/1.png">
     <img v-show="words === 1" class="wordsAnimate" src="../../assets/p10/2.png">
     <img v-show="words === 2" class="wordsAnimate" src="../../assets/p10/3.png">
@@ -41,12 +39,13 @@
     },
     methods: {
       animate () {
+        this.aniVar.superman = 0
         this.words = Math.floor(Math.random() * 3)
         aniLoop(this, 'earth', 4, 100)
         aniLoop(this, 'rocket', 2)
         aniLoop(this, 'UFO', 2)
 
-        aniOnce(this, 'superman', 3)
+        aniLoop(this, 'superman', 2)
       }
     }
   }
