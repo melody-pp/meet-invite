@@ -17,6 +17,7 @@
 </template>
 
 <script>
+  import EXIF from 'exif-js'
   import { animateMixin } from '../../mixins'
   import { aniOnce, aniLoop } from '../../util'
 
@@ -47,10 +48,101 @@
         this.$emit('setSelfie', imgUrl)
       },
       changeFile () {
+        this.fixImgOri(this.$refs.input.files[0])
+      },
+      fixImgOri (file) {
+        let orientation
+        const vm = this
+
+        EXIF.getData(file, function () {
+          orientation = +EXIF.getTag(this, 'Orientation')
+
+          const reader = new FileReader()
+          reader.readAsDataURL(file)
+          reader.onload = e => {
+            const image = new Image()
+            image.src = e.target.result
+            image.onload = function () {
+              let width = this.naturalWidth
+              let height = this.naturalHeight
+
+              const canvas = document.createElement('canvas')
+              const ctx = canvas.getContext('2d')
+              canvas.width = width
+              canvas.height = height
+              ctx.drawImage(image, 0, 0, width, height)
+
+              if (navigator.userAgent.match(/iphone/i) && orientation && orientation !== 1) {
+                switch (orientation) {
+                  case 6://需要顺时针（向左）90度旋转
+                    vm.rotateImg(this, 'left', canvas)
+                    break
+                  case 8://需要逆时针（向右）90度旋转
+                    vm.rotateImg(this, 'right', canvas)
+                    break
+                  case 3://需要180度旋转
+                    vm.rotateImg(this, 'right', canvas)//转两次
+                    vm.rotateImg(this, 'right', canvas)
+                    break
+                }
+              }
+
+              vm.uploadImg(vm.dataURLtoFile(canvas.toDataURL('image/jpg', 0.8)))
+            }
+          }
+        })
+      },
+      rotateImg (img, direction, canvas) {
+        const height = img.naturalHeight
+        const width = img.naturalWidth
+        const step = direction === 'right' ? 3 : 1
+
+        //旋转角度以弧度值为参数
+        const degree = step * 90 * Math.PI / 180
+        const ctx = canvas.getContext('2d')
+        switch (step) {
+          case 0:
+            canvas.width = width
+            canvas.height = height
+            ctx.drawImage(img, 0, 0)
+            break
+          case 1:
+            canvas.width = height
+            canvas.height = width
+            ctx.rotate(degree)
+            ctx.drawImage(img, 0, -height)
+            break
+          case 2:
+            canvas.width = width
+            canvas.height = height
+            ctx.rotate(degree)
+            ctx.drawImage(img, -width, -height)
+            break
+          case 3:
+            canvas.width = height
+            canvas.height = width
+            ctx.rotate(degree)
+            ctx.drawImage(img, -width, 0)
+            break
+        }
+      },
+      dataURLtoFile (dataUrl) {
+        const arr = dataUrl.split(',')
+        const mime = arr[0].match(/:(.*?);/)[1]
+        const bstr = atob(arr[1])
+        let n = bstr.length
+        const u8arr = new Uint8Array(n)
+        while (n--) {
+          u8arr[n] = bstr.charCodeAt(n)
+        }
+
+        return new File([u8arr], 'file', {type: mime})
+      },
+      uploadImg (file) {
         const formData = new FormData
         const xhr = new XMLHttpRequest()
 
-        formData.append('file', this.$refs.input.files[0])
+        formData.append('file', file)
         xhr.open('post', '/nianhui/index.php/Meet/upload')
         xhr.send(formData)
         xhr.onreadystatechange = () => {

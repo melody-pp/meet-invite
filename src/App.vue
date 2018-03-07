@@ -22,7 +22,9 @@
       }
     },
     mounted () {
-      this.$refs.bg.play()
+      this.$refs.bg.addEventListener('canplay', function () {
+        this.play()
+      })
     },
     methods: {
       play () {

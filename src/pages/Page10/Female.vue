@@ -20,7 +20,7 @@
 
 <script>
   import { animateMixin } from '../../mixins'
-  import { aniOnce, aniLoop } from '../../util'
+  import { aniLoop } from '../../util'
 
   export default {
     name: 'famale',
