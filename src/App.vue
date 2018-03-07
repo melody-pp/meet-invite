@@ -1,12 +1,10 @@
 <template>
   <div id="app">
-    <MainFrame @flip="flip"/>
+    <MainFrame @flip="playFlip"/>
     <div class="musicBtn">
       <img @click="pause" v-show="music" src="./assets/on.png">
       <img @click="play" v-show="!music" src="./assets/off.png">
     </div>
-    <audio ref="flip" src="./assets/mp3/flip.mp3"></audio>
-    <audio ref="bg" src="./assets/mp3/bg.mp3" autoplay loop></audio>
   </div>
 </template>
 
@@ -18,25 +16,50 @@
     components: {MainFrame},
     data () {
       return {
-        music: true
+        music: true,
+        bgm: null,
+        flip: null
       }
     },
     mounted () {
-      this.$refs.bg.addEventListener('canplay', function () {
-        this.play()
-      })
+      this.initBgm()
+      this.initFlip()
+      this.wxTrick()
     },
     methods: {
+      wxTrick () {
+        const wx = require('weixin-js-sdk')
+
+        wx.config({})
+        wx.ready(() => {
+          this.bgm.play()
+          this.flip.play()
+        })
+      },
+      initBgm () {
+        this.bgm = new Audio()
+
+        this.bgm.src = require('./assets/mp3/bg.mp3')
+        this.bgm.autoplay = true
+        this.bgm.loop = true
+        this.bgm.load()
+      },
+      initFlip () {
+        this.flip = new Audio()
+
+        this.flip.src = require('./assets/mp3/flip.mp3')
+        this.flip.load()
+      },
       play () {
         this.music = true
-        this.$refs.bg.play()
+        this.bgm.play()
       },
       pause () {
         this.music = false
-        this.$refs.bg.pause()
+        this.bgm.pause()
       },
-      flip () {
-        this.$refs.flip.play()
+      playFlip () {
+        this.flip.play()
       }
     }
   }
