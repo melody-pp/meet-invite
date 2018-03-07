@@ -49,15 +49,15 @@
       changeFile () {
         const formData = new FormData
         const xhr = new XMLHttpRequest()
+        const file = this.$refs.input.files[0]
 
-        formData.append('file', this.$refs.input.files[0])
+        formData.append('file', file)
         xhr.open('post', '/nianhui/index.php/Meet/upload')
         xhr.send(formData)
-        xhr.onreadystatechange = () => {
-          if (xhr.readyState === XMLHttpRequest.DONE && xhr.status === 200) {
-            this.$emit('getSelfie', xhr.responseText)
-          }
-        }
+
+        const reader = new FileReader()
+        reader.readAsDataURL(file)
+        reader.onload = e => this.$emit('getSelfie', e.target.result)
       },
     },
     watch: {
