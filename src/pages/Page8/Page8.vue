@@ -87,7 +87,7 @@
                 }
               }
 
-              vm.uploadImg(vm.dataURLtoFile(canvas.toDataURL('image/jpg', 0.8)))
+              vm.uploadImg(vm.dataURLtoFile(canvas.toDataURL('image/jpeg', 0.8)))
             }
           }
         })
@@ -136,7 +136,7 @@
           u8arr[n] = bstr.charCodeAt(n)
         }
 
-        return new File([u8arr], 'file', {type: mime})
+        return new File([u8arr], 'file.jpeg', {type: mime})
       },
       uploadImg (file) {
         const formData = new FormData
