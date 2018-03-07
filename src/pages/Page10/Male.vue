@@ -1,6 +1,6 @@
 <template>
   <div class="male">
-    <div class="avatarBox" :style="{backgroundImage:`url(${imgUrl})`}"></div>
+    <div :class="{avatarBox:true,rotateLeft,rotateRight}" :style="{backgroundImage:`url(${imgUrl})`}"></div>
 
     <img class="earth" v-show="aniVar.earth === 0" src="../../assets/p1/7.png">
     <img class="earth" v-show="aniVar.earth === 1" src="../../assets/p1/8.png">
@@ -19,6 +19,7 @@
 </template>
 
 <script>
+  import EXIF from 'exif-js'
   import { animateMixin } from '../../mixins'
   import { aniOnce, aniLoop } from '../../util'
 
@@ -32,9 +33,11 @@
           earth: null,
           rocket: null,
           UFO: null,
-          superman: null
+          superman: null,
         },
-        words: null
+        words: null,
+        rotateLeft: false,
+        rotateRight: false,
       }
     },
     methods: {
@@ -46,8 +49,25 @@
         aniLoop(this, 'UFO', 2)
 
         aniLoop(this, 'superman', 2)
-      }
-    }
+      },
+      fixImgOri (img) {
+        const vm = this
+        EXIF.getData(img, function () {
+          const orientation = +EXIF.getTag(this, 'Orientation')
+          vm.rotateLeft = orientation === 6
+          vm.rotateRight = orientation === 8
+        })
+      },
+    },
+    watch: {
+      imgUrl (url) {
+        const image = new Image()
+        image.src = url
+        image.onload = () => {
+          this.fixImgOri(image)
+        }
+      },
+    },
   }
 </script>
 
@@ -63,8 +83,20 @@
       position: absolute;
       right: 41vw;
       top: 27vh;
+      transform-origin: center;
       background-size: cover;
       background-position: center center;
+
+      &.rotateRight {
+        width: 15.5vh;
+        height: 20vw;
+        transform: rotateZ(90deg);
+      }
+      &.rotateLeft {
+        width: 15.5vh;
+        height: 20vw;
+        transform: rotateZ(-90deg);
+      }
     }
     .earth {
       top: 3vh;
