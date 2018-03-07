@@ -66,11 +66,15 @@
       &.rotateRight {
         width: 15.5vh;
         height: 20vw;
+        right: 26.8vw;
+        top: 19.6vh;
         transform: rotateZ(90deg);
       }
       &.rotateLeft {
         width: 15.5vh;
         height: 20vw;
+        right: 26.8vw;
+        top: 19.6vh;
         transform: rotateZ(-90deg);
       }
     }

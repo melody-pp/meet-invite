@@ -69,15 +69,15 @@
       &.rotateRight {
         width: 15.5vh;
         height: 20vw;
-        right: 35.5vw;
-        top: 29.4vh;
+        right: 38.5vw;
+        top: 28.4vh;
         transform: rotateZ(90deg);
       }
       &.rotateLeft {
         width: 15.5vh;
         height: 20vw;
-        right: 35.5vw;
-        top: 29.4vh;
+        right: 38.5vw;
+        top: 28.4vh;
         transform: rotateZ(-90deg);
       }
     }
