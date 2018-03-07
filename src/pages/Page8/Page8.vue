@@ -19,7 +19,7 @@
 <script>
   import EXIF from 'exif-js'
   import { animateMixin } from '../../mixins'
-  import { aniOnce, aniLoop } from '../../util'
+  import { aniLoop } from '../../util'
 
   export default {
     name: 'page8',
@@ -33,7 +33,7 @@
         y: 0,
         startY: null,
         rocket: false,
-        title: false
+        title: false,
       }
     },
     methods: {
@@ -51,15 +51,14 @@
         this.fixImgOri(this.$refs.input.files[0])
       },
       fixImgOri (file) {
-        let orientation
         const vm = this
 
         EXIF.getData(file, function () {
-          orientation = +EXIF.getTag(this, 'Orientation')
+          const orientation = +EXIF.getTag(this, 'Orientation')
 
           const reader = new FileReader()
           reader.readAsDataURL(file)
-          reader.onload = e => {
+          reader.onload = function (e) {
             const image = new Image()
             image.src = e.target.result
             image.onload = function () {
@@ -150,7 +149,7 @@
             this.$emit('getSelfie', xhr.responseText)
           }
         }
-      }
+      },
     },
     watch: {
       moveIn (newVal) {
@@ -159,8 +158,8 @@
           this.title = newVal
         }, 500)
 
-      }
-    }
+      },
+    },
   }
 </script>
 
