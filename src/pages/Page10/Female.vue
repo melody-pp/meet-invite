@@ -7,11 +7,10 @@
     <img v-show="aniVar.earth === 3" src="../../assets/p1/10.png">
     <!--<img v-show="aniVar.rocket === 0" src="../../assets/p1/5.png">-->
     <!--<img v-show="aniVar.rocket === 1" src="../../assets/p1/6.png">-->
-    <img v-show="aniVar.UFO === 0" src="../../assets/p1/3.png">
-    <img v-show="aniVar.UFO === 1" src="../../assets/p1/4.png">
-    <img v-show="aniVar.superwoman === 0" src="../../assets/p11/4.png">
-    <img v-show="aniVar.superwoman === 1" src="../../assets/p11/5.png">
-    <img src="../../assets/p11/5.png">
+    <!--<img v-show="aniVar.UFO === 0" src="../../assets/p1/3.png">-->
+    <!--<img v-show="aniVar.UFO === 1" src="../../assets/p1/4.png">-->
+    <img v-show="aniVar.superwoman === 0" src="../../assets/p11/5.png">
+    <img v-show="aniVar.superwoman === 1" src="../../assets/p11/4.png">
     <img v-show="words === 0" class="wordsAnimate" src="../../assets/p11/1.png">
     <img v-show="words === 1" class="wordsAnimate" src="../../assets/p11/2.png">
     <img v-show="words === 2" class="wordsAnimate" src="../../assets/p11/3.png">
@@ -32,7 +31,7 @@
         aniVar: {
           earth: null,
           // rocket: null,
-          UFO: null,
+          // UFO: null,
           superwoman: null
         },
         words: null
@@ -43,7 +42,7 @@
         this.words = Math.floor(Math.random() * 3)
         aniLoop(this, 'earth', 4, 100)
         // aniLoop(this, 'rocket', 2)
-        aniLoop(this, 'UFO', 2)
+        // aniLoop(this, 'UFO', 2)
         aniLoop(this, 'superwoman', 2)
       }
     }

@@ -2,10 +2,10 @@
   <div class="male">
     <div class="avatarBox" :style="{backgroundImage:`url(${imgUrl})`}"></div>
 
-    <img v-show="aniVar.earth === 0" src="../../assets/p1/7.png">
-    <img v-show="aniVar.earth === 1" src="../../assets/p1/8.png">
-    <img v-show="aniVar.earth === 2" src="../../assets/p1/9.png">
-    <img v-show="aniVar.earth === 3" src="../../assets/p1/10.png">
+    <img class="earth" v-show="aniVar.earth === 0" src="../../assets/p1/7.png">
+    <img class="earth" v-show="aniVar.earth === 1" src="../../assets/p1/8.png">
+    <img class="earth" v-show="aniVar.earth === 2" src="../../assets/p1/9.png">
+    <img class="earth" v-show="aniVar.earth === 3" src="../../assets/p1/10.png">
     <img v-show="aniVar.rocket === 0" src="../../assets/p1/5.png">
     <img v-show="aniVar.rocket === 1" src="../../assets/p1/6.png">
     <img v-show="aniVar.UFO === 0" src="../../assets/p1/3.png">
@@ -65,6 +65,9 @@
       top: 27vh;
       background-size: cover;
       background-position: center center;
+    }
+    .earth {
+      top: 3vh;
     }
     .wordsAnimate {
       animation-duration: 1s;
