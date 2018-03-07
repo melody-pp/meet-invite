@@ -54,8 +54,8 @@
         const vm = this
         EXIF.getData(img, function () {
           const orientation = +EXIF.getTag(this, 'Orientation')
-          vm.rotateLeft = orientation === 6
-          vm.rotateRight = orientation === 8
+          vm.rotateRight = orientation === 6
+          vm.rotateLeft = orientation === 8
         })
       },
     },
