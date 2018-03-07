@@ -34,6 +34,7 @@
           superman: null,
         },
         words: null,
+        isIphoneX: /iphone/gi.test(navigator.userAgent) && (screen.height == 812 && screen.width == 375)
       }
     },
     methods: {
