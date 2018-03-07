@@ -81,8 +81,8 @@
       height: 15.5vh;
       overflow: hidden;
       position: absolute;
-      right: 41vw;
-      top: 27vh;
+      right: 35.5vw;
+      top: 29.4vh;
       transform-origin: center;
       background-size: cover;
       background-position: center center;
