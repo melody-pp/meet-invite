@@ -1,6 +1,6 @@
 <template>
   <div class="male">
-    <div :class="{avatarBox:true,rotateLeft,rotateRight}" :style="{backgroundImage:`url(${imgUrl})`}"></div>
+    <div :class="{avatarBox:true,rotateLeft,rotateRight,isIphoneX}" :style="{backgroundImage:`url(${imgUrl})`}"></div>
 
     <img class="earth" v-show="aniVar.earth === 0" src="../../assets/p1/7.png">
     <img class="earth" v-show="aniVar.earth === 1" src="../../assets/p1/8.png">
@@ -34,7 +34,6 @@
           superman: null,
         },
         words: null,
-        isIphoneX: /iphone/gi.test(navigator.userAgent) && (screen.height == 812 && screen.width == 375)
       }
     },
     methods: {
@@ -73,6 +72,10 @@
         right: 38.5vw;
         top: 28.4vh;
         transform: rotateZ(90deg);
+        &.isIphoneX {
+          right: 36.5vw;
+          top: 29.5vh;
+        }
       }
       &.rotateLeft {
         width: 15.5vh;
@@ -80,6 +83,10 @@
         right: 38.5vw;
         top: 28.4vh;
         transform: rotateZ(-90deg);
+        &.isIphoneX {
+          right: 36.5vw;
+          top: 29.5vh;
+        }
       }
     }
     .earth {

@@ -1,6 +1,6 @@
 <template>
   <div class="female">
-    <div :class="{avatarBox:true,rotateLeft,rotateRight}" :style="{backgroundImage:`url(${imgUrl})`}"></div>
+    <div :class="{avatarBox:true,rotateLeft,rotateRight,isIphoneX}" :style="{backgroundImage:`url(${imgUrl})`}"></div>
     <img v-show="aniVar.earth === 0" src="../../assets/p1/7.png">
     <img v-show="aniVar.earth === 1" src="../../assets/p1/8.png">
     <img v-show="aniVar.earth === 2" src="../../assets/p1/9.png">
@@ -69,6 +69,10 @@
         right: 26.8vw;
         top: 19.6vh;
         transform: rotateZ(90deg);
+        &.isIphoneX{
+          right: 26.8vw;
+          top: 19.6vh;
+        }
       }
       &.rotateLeft {
         width: 15.5vh;
@@ -76,6 +80,10 @@
         right: 26.8vw;
         top: 19.6vh;
         transform: rotateZ(-90deg);
+        &.isIphoneX{
+          right: 26.8vw;
+          top: 19.6vh;
+        }
       }
     }
     .wordsAnimate {

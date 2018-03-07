@@ -6,6 +6,7 @@ export const fixImgOriMixin = {
     return {
       rotateLeft: false,
       rotateRight: false,
+      isIphoneX: /iphone/gi.test(navigator.userAgent) && (screen.height === 812 && screen.width === 375)
     }
   },
   methods: {
