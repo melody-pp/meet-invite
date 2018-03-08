@@ -66,10 +66,10 @@
       &.rotateRight {
         width: 15.5vh;
         height: 20vw;
-        right: 26.8vw;
-        top: 19.6vh;
+        right: 29.5vw;
+        top: 18.6vh;
         transform: rotateZ(90deg);
-        &.isIphoneX{
+        &.isIphoneX {
           right: 26.8vw;
           top: 19.6vh;
         }
@@ -77,10 +77,10 @@
       &.rotateLeft {
         width: 15.5vh;
         height: 20vw;
-        right: 26.8vw;
-        top: 19.6vh;
+        right: 29.5vw;
+        top: 18.6vh;
         transform: rotateZ(-90deg);
-        &.isIphoneX{
+        &.isIphoneX {
           right: 26.8vw;
           top: 19.6vh;
         }
